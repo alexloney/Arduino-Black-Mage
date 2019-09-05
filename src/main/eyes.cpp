@@ -34,54 +34,41 @@ void Eye::resetEye()
       this->eye->drawPixel(i, j, OFF);
 }
 
+void Eye::displayPattern(const char p[HEIGHT][WIDTH])
+{
+  for (int i = 0; i < HEIGHT; i++)
+  {
+    for (int j = 0; j < WIDTH; j++)
+    {
+      if (p[i][j] == '*')
+        this->eye->drawPixel(j, i, OFF);
+      else if (p[i][j] == 'O')
+        this->eye->drawPixel(j, i, ORANGE);
+      else if (p[i][j] == 'B')
+        this->eye->drawPixel(j, i, BLUE);
+      else if (p[i][j] == 'R')
+        this->eye->drawPixel(j, i, RED);
+    }
+  }
+}
+
 void Eye::normalEye()
 {
   this->resetEye();
-  
-  this->eye->drawPixel(1, 0, ORANGE);
-  this->eye->drawPixel(2, 0, ORANGE);
-  this->eye->drawPixel(3, 0, ORANGE);
-  
-  this->eye->drawPixel(0, 1, ORANGE);
-  this->eye->drawPixel(1, 1, ORANGE);
-  this->eye->drawPixel(2, 1, ORANGE);
-  this->eye->drawPixel(3, 1, ORANGE);
-  this->eye->drawPixel(4, 1, ORANGE);
-  
-  this->eye->drawPixel(0, 2, ORANGE);
-  this->eye->drawPixel(1, 2, ORANGE);
-  this->eye->drawPixel(2, 2, ORANGE);
-  this->eye->drawPixel(3, 2, ORANGE);
-  this->eye->drawPixel(4, 2, ORANGE);
-  
-  this->eye->drawPixel(0, 3, ORANGE);
-  this->eye->drawPixel(1, 3, ORANGE);
-  this->eye->drawPixel(2, 3, ORANGE);
-  this->eye->drawPixel(3, 3, ORANGE);
-  this->eye->drawPixel(4, 3, ORANGE);
-  
-  this->eye->drawPixel(0, 4, ORANGE);
-  this->eye->drawPixel(1, 4, ORANGE);
-  this->eye->drawPixel(2, 4, ORANGE);
-  this->eye->drawPixel(3, 4, ORANGE);
-  this->eye->drawPixel(4, 4, ORANGE);
-  
-  this->eye->drawPixel(0, 5, ORANGE);
-  this->eye->drawPixel(1, 5, ORANGE);
-  this->eye->drawPixel(2, 5, ORANGE);
-  this->eye->drawPixel(3, 5, ORANGE);
-  this->eye->drawPixel(4, 5, ORANGE);
-  
-  this->eye->drawPixel(0, 6, ORANGE);
-  this->eye->drawPixel(1, 6, ORANGE);
-  this->eye->drawPixel(2, 6, ORANGE);
-  this->eye->drawPixel(3, 6, ORANGE);
-  this->eye->drawPixel(4, 6, ORANGE);
-  
-  this->eye->drawPixel(1, 7, ORANGE);
-  this->eye->drawPixel(2, 7, ORANGE);
-  this->eye->drawPixel(3, 7, ORANGE);
 
+  const char disp[HEIGHT][WIDTH] = {
+    {'*', 'O', 'O', 'O', '*'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'*', 'O', 'O', 'O', '*'}
+  };
+
+  this->displayPattern(disp);
+  
   this->eyeState = STATE_NORMAL;
   this->eye->show();
 }
@@ -90,12 +77,18 @@ void Eye::happyEye()
 {
   this->resetEye();
 
-  this->eye->drawPixel(1, 1, ORANGE);
-  this->eye->drawPixel(2, 1, ORANGE);
-  this->eye->drawPixel(3, 1, ORANGE);
+  const char disp[HEIGHT][WIDTH] = {
+    {'*', '*', '*', '*', '*'},
+    {'*', 'O', 'O', 'O', '*'},
+    {'O', '*', '*', '*', 'O'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'}
+  };
 
-  this->eye->drawPixel(0, 2, ORANGE);
-  this->eye->drawPixel(4, 2, ORANGE);
+  this->displayPattern(disp);
 
   this->eyeState = STATE_HAPPY;
   this->eye->show();
@@ -107,79 +100,33 @@ void Eye::sadEye()
   
   if (this->eyeType == LEFT_EYE)
   {
-    this->eye->drawPixel(0, 0, ORANGE);
+    const char disp[HEIGHT][WIDTH] = {
+      {'O', '*', '*', '*', '*'},
+      {'O', 'O', '*', '*', '*'},
+      {'O', 'O', 'O', '*', '*'},
+      {'O', 'O', 'O', 'O', '*'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'B', 'B', 'B', 'B', 'B'},
+      {'*', 'B', 'B', 'B', '*'}
+    };
     
-    this->eye->drawPixel(0, 1, ORANGE);
-    this->eye->drawPixel(1, 1, ORANGE);
-    
-    this->eye->drawPixel(0, 2, ORANGE);
-    this->eye->drawPixel(1, 2, ORANGE);
-    this->eye->drawPixel(2, 2, ORANGE);
-    
-    this->eye->drawPixel(0, 3, ORANGE);
-    this->eye->drawPixel(1, 3, ORANGE);
-    this->eye->drawPixel(2, 3, ORANGE);
-    this->eye->drawPixel(3, 3, ORANGE);
-    
-    this->eye->drawPixel(0, 4, ORANGE);
-    this->eye->drawPixel(1, 4, ORANGE);
-    this->eye->drawPixel(2, 4, ORANGE);
-    this->eye->drawPixel(3, 4, ORANGE);
-    this->eye->drawPixel(4, 4, ORANGE);
-    
-    this->eye->drawPixel(0, 5, ORANGE);
-    this->eye->drawPixel(1, 5, ORANGE);
-    this->eye->drawPixel(2, 5, ORANGE);
-    this->eye->drawPixel(3, 5, ORANGE);
-    this->eye->drawPixel(4, 5, ORANGE);
-    
-    this->eye->drawPixel(0, 6, BLUE);
-    this->eye->drawPixel(1, 6, BLUE);
-    this->eye->drawPixel(2, 6, BLUE);
-    this->eye->drawPixel(3, 6, BLUE);
-    this->eye->drawPixel(4, 6, BLUE);
-    
-    this->eye->drawPixel(1, 7, BLUE);
-    this->eye->drawPixel(2, 7, BLUE);
-    this->eye->drawPixel(3, 7, BLUE);
+    this->displayPattern(disp);
   }
   else if (this->eyeType == RIGHT_EYE)
   {
-    this->eye->drawPixel(4, 0, ORANGE);
+    const char disp[HEIGHT][WIDTH] = {
+      {'*', '*', '*', '*', 'O'},
+      {'*', '*', '*', 'O', 'O'},
+      {'*', '*', 'O', 'O', 'O'},
+      {'*', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'B', 'B', 'B', 'B', 'B'},
+      {'*', 'B', 'B', 'B', '*'}
+    };
     
-    this->eye->drawPixel(3, 1, ORANGE);
-    this->eye->drawPixel(4, 1, ORANGE);
-    
-    this->eye->drawPixel(2, 2, ORANGE);
-    this->eye->drawPixel(3, 2, ORANGE);
-    this->eye->drawPixel(4, 2, ORANGE);
-    
-    this->eye->drawPixel(1, 3, ORANGE);
-    this->eye->drawPixel(2, 3, ORANGE);
-    this->eye->drawPixel(3, 3, ORANGE);
-    this->eye->drawPixel(4, 3, ORANGE);
-    
-    this->eye->drawPixel(0, 4, ORANGE);
-    this->eye->drawPixel(1, 4, ORANGE);
-    this->eye->drawPixel(2, 4, ORANGE);
-    this->eye->drawPixel(3, 4, ORANGE);
-    this->eye->drawPixel(4, 4, ORANGE);
-    
-    this->eye->drawPixel(0, 5, ORANGE);
-    this->eye->drawPixel(1, 5, ORANGE);
-    this->eye->drawPixel(2, 5, ORANGE);
-    this->eye->drawPixel(3, 5, ORANGE);
-    this->eye->drawPixel(4, 5, ORANGE);
-    
-    this->eye->drawPixel(0, 6, BLUE);
-    this->eye->drawPixel(1, 6, BLUE);
-    this->eye->drawPixel(2, 6, BLUE);
-    this->eye->drawPixel(3, 6, BLUE);
-    this->eye->drawPixel(4, 6, BLUE);
-    
-    this->eye->drawPixel(1, 7, BLUE);
-    this->eye->drawPixel(2, 7, BLUE);
-    this->eye->drawPixel(3, 7, BLUE);
+    this->displayPattern(disp);
   }
 
   this->eyeState = STATE_SAD;
@@ -189,12 +136,19 @@ void Eye::sadEye()
 void Eye::closedEye()
 {
   this->resetEye();
-
-  this->eye->drawPixel(0, 3, ORANGE);
-  this->eye->drawPixel(1, 3, ORANGE);
-  this->eye->drawPixel(2, 3, ORANGE);
-  this->eye->drawPixel(3, 3, ORANGE);
-  this->eye->drawPixel(4, 3, ORANGE);
+  
+  const char disp[HEIGHT][WIDTH] = {
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'}
+  };
+  
+  this->displayPattern(disp);
 
   this->eyeState = STATE_CLOSED;
   this->eye->show();
@@ -203,28 +157,19 @@ void Eye::closedEye()
 void Eye::halfEye()
 {
   this->resetEye();
-
-  this->eye->drawPixel(1, 0, ORANGE);
-  this->eye->drawPixel(2, 0, ORANGE);
-  this->eye->drawPixel(3, 0, ORANGE);
   
-  this->eye->drawPixel(0, 1, ORANGE);
-  this->eye->drawPixel(1, 1, ORANGE);
-  this->eye->drawPixel(2, 1, ORANGE);
-  this->eye->drawPixel(3, 1, ORANGE);
-  this->eye->drawPixel(4, 1, ORANGE);
+  const char disp[HEIGHT][WIDTH] = {
+    {'*', 'O', 'O', 'O', '*'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'}
+  };
   
-  this->eye->drawPixel(0, 2, ORANGE);
-  this->eye->drawPixel(1, 2, ORANGE);
-  this->eye->drawPixel(2, 2, ORANGE);
-  this->eye->drawPixel(3, 2, ORANGE);
-  this->eye->drawPixel(4, 2, ORANGE);
-  
-  this->eye->drawPixel(0, 3, ORANGE);
-  this->eye->drawPixel(1, 3, ORANGE);
-  this->eye->drawPixel(2, 3, ORANGE);
-  this->eye->drawPixel(3, 3, ORANGE);
-  this->eye->drawPixel(4, 3, ORANGE);
+  this->displayPattern(disp);
 
   this->eyeState = STATE_HALF;
   this->eye->show();
@@ -236,41 +181,33 @@ void Eye::halfEye2()
 
   if (eye == LEFT_EYE)
   {
-    this->eye->drawPixel(0, 0, ORANGE);
-    this->eye->drawPixel(1, 0, ORANGE);
-    this->eye->drawPixel(2, 0, ORANGE);
-    this->eye->drawPixel(3, 0, ORANGE);
-    
-    this->eye->drawPixel(0, 1, ORANGE);
-    this->eye->drawPixel(1, 1, ORANGE);
-    this->eye->drawPixel(2, 1, ORANGE);
-    this->eye->drawPixel(3, 1, ORANGE);
-    this->eye->drawPixel(4, 1, ORANGE);
-    
-    this->eye->drawPixel(0, 2, ORANGE);
-    this->eye->drawPixel(1, 2, ORANGE);
-    this->eye->drawPixel(2, 2, ORANGE);
-    this->eye->drawPixel(3, 2, ORANGE);
-    this->eye->drawPixel(4, 2, ORANGE);
+    const char disp[HEIGHT][WIDTH] = {
+      {'O', 'O', 'O', 'O', '*'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'*', '*', '*', '*', '*'},
+      {'*', '*', '*', '*', '*'},
+      {'*', '*', '*', '*', '*'},
+      {'*', '*', '*', '*', '*'},
+      {'*', '*', '*', '*', '*'}
+    };
+  
+    this->displayPattern(disp);
   }
   else if (eye == RIGHT_EYE)
   {
-    this->eye->drawPixel(1, 0, ORANGE);
-    this->eye->drawPixel(2, 0, ORANGE);
-    this->eye->drawPixel(3, 0, ORANGE);
-    this->eye->drawPixel(4, 0, ORANGE);
-    
-    this->eye->drawPixel(0, 1, ORANGE);
-    this->eye->drawPixel(1, 1, ORANGE);
-    this->eye->drawPixel(2, 1, ORANGE);
-    this->eye->drawPixel(3, 1, ORANGE);
-    this->eye->drawPixel(4, 1, ORANGE);
-    
-    this->eye->drawPixel(0, 2, ORANGE);
-    this->eye->drawPixel(1, 2, ORANGE);
-    this->eye->drawPixel(2, 2, ORANGE);
-    this->eye->drawPixel(3, 2, ORANGE);
-    this->eye->drawPixel(4, 2, ORANGE);
+    const char disp[HEIGHT][WIDTH] = {
+      {'*', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'*', '*', '*', '*', '*'},
+      {'*', '*', '*', '*', '*'},
+      {'*', '*', '*', '*', '*'},
+      {'*', '*', '*', '*', '*'},
+      {'*', '*', '*', '*', '*'}
+    };
+  
+    this->displayPattern(disp);
   }
 
   this->eyeState = STATE_HALF2;
@@ -283,23 +220,33 @@ void Eye::laughingEye()
 
   if (this->eyeType == LEFT_EYE)
   {
-    this->eye->drawPixel(3, 0, ORANGE);
-    this->eye->drawPixel(2, 1, ORANGE);
-    this->eye->drawPixel(1, 2, ORANGE);
-    this->eye->drawPixel(0, 3, ORANGE);
-    this->eye->drawPixel(1, 4, ORANGE);
-    this->eye->drawPixel(2, 5, ORANGE);
-    this->eye->drawPixel(3, 6, ORANGE);
+    const char disp[HEIGHT][WIDTH] = {
+      {'*', '*', '*', 'O', '*'},
+      {'*', '*', 'O', '*', '*'},
+      {'*', 'O', '*', '*', '*'},
+      {'O', '*', '*', '*', '*'},
+      {'*', 'O', '*', '*', '*'},
+      {'*', '*', 'O', '*', '*'},
+      {'*', '*', '*', 'O', '*'},
+      {'*', '*', '*', '*', 'O'}
+    };
+  
+    this->displayPattern(disp);
   }
   else if (this->eyeType == RIGHT_EYE)
   {
-    this->eye->drawPixel(1, 0, ORANGE);
-    this->eye->drawPixel(2, 1, ORANGE);
-    this->eye->drawPixel(3, 2, ORANGE);
-    this->eye->drawPixel(4, 3, ORANGE);
-    this->eye->drawPixel(3, 4, ORANGE);
-    this->eye->drawPixel(2, 5, ORANGE);
-    this->eye->drawPixel(1, 6, ORANGE);
+    const char disp[HEIGHT][WIDTH] = {
+      {'*', 'O', '*', '*', '*'},
+      {'*', '*', 'O', '*', '*'},
+      {'*', '*', '*', 'O', '*'},
+      {'*', '*', '*', '*', 'O'},
+      {'*', '*', '*', 'O', '*'},
+      {'*', '*', 'O', '*', '*'},
+      {'*', 'O', '*', '*', '*'},
+      {'O', '*', '*', '*', '*'}
+    };
+  
+    this->displayPattern(disp);
   }
   
   this->eyeState = STATE_LAUGHING;
@@ -312,79 +259,33 @@ void Eye::angryEye()
 
   if (this->eyeType == LEFT_EYE)
   {
-    this->eye->drawPixel(4, 0, ORANGE);
-    
-    this->eye->drawPixel(3, 1, ORANGE);
-    this->eye->drawPixel(4, 1, ORANGE);
-    
-    this->eye->drawPixel(2, 2, ORANGE);
-    this->eye->drawPixel(3, 2, ORANGE);
-    this->eye->drawPixel(4, 2, ORANGE);
-    
-    this->eye->drawPixel(1, 3, ORANGE);
-    this->eye->drawPixel(2, 3, ORANGE);
-    this->eye->drawPixel(3, 3, ORANGE);
-    this->eye->drawPixel(4, 3, ORANGE);
-    
-    this->eye->drawPixel(0, 4, ORANGE);
-    this->eye->drawPixel(1, 4, ORANGE);
-    this->eye->drawPixel(2, 4, ORANGE);
-    this->eye->drawPixel(3, 4, ORANGE);
-    this->eye->drawPixel(4, 4, ORANGE);
-    
-    this->eye->drawPixel(0, 5, ORANGE);
-    this->eye->drawPixel(1, 5, ORANGE);
-    this->eye->drawPixel(2, 5, ORANGE);
-    this->eye->drawPixel(3, 5, ORANGE);
-    this->eye->drawPixel(4, 5, ORANGE);
-    
-    this->eye->drawPixel(0, 6, ORANGE);
-    this->eye->drawPixel(1, 6, ORANGE);
-    this->eye->drawPixel(2, 6, ORANGE);
-    this->eye->drawPixel(3, 6, ORANGE);
-    this->eye->drawPixel(4, 6, ORANGE);
-    
-    this->eye->drawPixel(1, 7, ORANGE);
-    this->eye->drawPixel(2, 7, ORANGE);
-    this->eye->drawPixel(3, 7, ORANGE);
+    const char disp[HEIGHT][WIDTH] = {
+      {'*', '*', '*', '*', 'O'},
+      {'*', '*', '*', 'O', 'O'},
+      {'*', '*', 'O', 'O', 'O'},
+      {'*', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'*', 'O', 'O', 'O', '*'}
+    };
+  
+    this->displayPattern(disp);
   }
   else if (this->eyeType == RIGHT_EYE)
   {
-    this->eye->drawPixel(0, 0, ORANGE);
-    
-    this->eye->drawPixel(0, 1, ORANGE);
-    this->eye->drawPixel(1, 1, ORANGE);
-    
-    this->eye->drawPixel(0, 2, ORANGE);
-    this->eye->drawPixel(1, 2, ORANGE);
-    this->eye->drawPixel(2, 2, ORANGE);
-    
-    this->eye->drawPixel(0, 3, ORANGE);
-    this->eye->drawPixel(1, 3, ORANGE);
-    this->eye->drawPixel(2, 3, ORANGE);
-    this->eye->drawPixel(3, 3, ORANGE);
-    
-    this->eye->drawPixel(0, 4, ORANGE);
-    this->eye->drawPixel(1, 4, ORANGE);
-    this->eye->drawPixel(2, 4, ORANGE);
-    this->eye->drawPixel(3, 4, ORANGE);
-    this->eye->drawPixel(4, 4, ORANGE);
-    
-    this->eye->drawPixel(0, 5, ORANGE);
-    this->eye->drawPixel(1, 5, ORANGE);
-    this->eye->drawPixel(2, 5, ORANGE);
-    this->eye->drawPixel(3, 5, ORANGE);
-    this->eye->drawPixel(4, 5, ORANGE);
-    
-    this->eye->drawPixel(0, 6, ORANGE);
-    this->eye->drawPixel(1, 6, ORANGE);
-    this->eye->drawPixel(2, 6, ORANGE);
-    this->eye->drawPixel(3, 6, ORANGE);
-    this->eye->drawPixel(4, 6, ORANGE);
-    
-    this->eye->drawPixel(1, 7, ORANGE);
-    this->eye->drawPixel(2, 7, ORANGE);
-    this->eye->drawPixel(3, 7, ORANGE);
+    const char disp[HEIGHT][WIDTH] = {
+      {'O', '*', '*', '*', '*'},
+      {'O', 'O', '*', '*', '*'},
+      {'O', 'O', 'O', '*', '*'},
+      {'O', 'O', 'O', 'O', '*'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'*', 'O', 'O', 'O', '*'}
+    };
+  
+    this->displayPattern(disp);
   }
   
   this->eyeState = STATE_ANGRY;
@@ -397,79 +298,33 @@ void Eye::veryAngryEye()
 
   if (this->eyeType == LEFT_EYE)
   {
-    this->eye->drawPixel(4, 0, RED);
-    
-    this->eye->drawPixel(3, 1, RED);
-    this->eye->drawPixel(4, 1, RED);
-    
-    this->eye->drawPixel(2, 2, RED);
-    this->eye->drawPixel(3, 2, RED);
-    this->eye->drawPixel(4, 2, RED);
-    
-    this->eye->drawPixel(1, 3, RED);
-    this->eye->drawPixel(2, 3, RED);
-    this->eye->drawPixel(3, 3, RED);
-    this->eye->drawPixel(4, 3, RED);
-    
-    this->eye->drawPixel(0, 4, RED);
-    this->eye->drawPixel(1, 4, RED);
-    this->eye->drawPixel(2, 4, RED);
-    this->eye->drawPixel(3, 4, RED);
-    this->eye->drawPixel(4, 4, RED);
-    
-    this->eye->drawPixel(0, 5, RED);
-    this->eye->drawPixel(1, 5, RED);
-    this->eye->drawPixel(2, 5, RED);
-    this->eye->drawPixel(3, 5, RED);
-    this->eye->drawPixel(4, 5, RED);
-    
-    this->eye->drawPixel(0, 6, RED);
-    this->eye->drawPixel(1, 6, RED);
-    this->eye->drawPixel(2, 6, RED);
-    this->eye->drawPixel(3, 6, RED);
-    this->eye->drawPixel(4, 6, RED);
-    
-    this->eye->drawPixel(1, 7, RED);
-    this->eye->drawPixel(2, 7, RED);
-    this->eye->drawPixel(3, 7, RED);
+    const char disp[HEIGHT][WIDTH] = {
+      {'*', '*', '*', '*', 'R'},
+      {'*', '*', '*', 'R', 'R'},
+      {'*', '*', 'R', 'R', 'R'},
+      {'*', 'R', 'R', 'R', 'R'},
+      {'R', 'R', 'R', 'R', 'R'},
+      {'R', 'R', 'R', 'R', 'R'},
+      {'R', 'R', 'R', 'R', 'R'},
+      {'*', 'R', 'R', 'R', '*'}
+    };
+  
+    this->displayPattern(disp);
   }
   else if (this->eyeType == RIGHT_EYE)
   {
-    this->eye->drawPixel(0, 0, RED);
-    
-    this->eye->drawPixel(0, 1, RED);
-    this->eye->drawPixel(1, 1, RED);
-    
-    this->eye->drawPixel(0, 2, RED);
-    this->eye->drawPixel(1, 2, RED);
-    this->eye->drawPixel(2, 2, RED);
-    
-    this->eye->drawPixel(0, 3, RED);
-    this->eye->drawPixel(1, 3, RED);
-    this->eye->drawPixel(2, 3, RED);
-    this->eye->drawPixel(3, 3, RED);
-    
-    this->eye->drawPixel(0, 4, RED);
-    this->eye->drawPixel(1, 4, RED);
-    this->eye->drawPixel(2, 4, RED);
-    this->eye->drawPixel(3, 4, RED);
-    this->eye->drawPixel(4, 4, RED);
-    
-    this->eye->drawPixel(0, 5, RED);
-    this->eye->drawPixel(1, 5, RED);
-    this->eye->drawPixel(2, 5, RED);
-    this->eye->drawPixel(3, 5, RED);
-    this->eye->drawPixel(4, 5, RED);
-    
-    this->eye->drawPixel(0, 6, RED);
-    this->eye->drawPixel(1, 6, RED);
-    this->eye->drawPixel(2, 6, RED);
-    this->eye->drawPixel(3, 6, RED);
-    this->eye->drawPixel(4, 6, RED);
-    
-    this->eye->drawPixel(1, 7, RED);
-    this->eye->drawPixel(2, 7, RED);
-    this->eye->drawPixel(3, 7, RED);
+    const char disp[HEIGHT][WIDTH] = {
+      {'R', '*', '*', '*', '*'},
+      {'R', 'R', '*', '*', '*'},
+      {'R', 'R', 'R', '*', '*'},
+      {'R', 'R', 'R', 'R', '*'},
+      {'R', 'R', 'R', 'R', 'R'},
+      {'R', 'R', 'R', 'R', 'R'},
+      {'R', 'R', 'R', 'R', 'R'},
+      {'*', 'R', 'R', 'R', '*'}
+    };
+  
+    this->displayPattern(disp);
   }
 
   
@@ -481,27 +336,18 @@ void Eye::sleepyEye()
 {
   this->resetEye();
   
-  this->eye->drawPixel(0, 4, ORANGE);
-  this->eye->drawPixel(1, 4, ORANGE);
-  this->eye->drawPixel(2, 4, ORANGE);
-  this->eye->drawPixel(3, 4, ORANGE);
-  this->eye->drawPixel(4, 4, ORANGE);
-  
-  this->eye->drawPixel(0, 5, ORANGE);
-  this->eye->drawPixel(1, 5, ORANGE);
-  this->eye->drawPixel(2, 5, ORANGE);
-  this->eye->drawPixel(3, 5, ORANGE);
-  this->eye->drawPixel(4, 5, ORANGE);
-  
-  this->eye->drawPixel(0, 6, ORANGE);
-  this->eye->drawPixel(1, 6, ORANGE);
-  this->eye->drawPixel(2, 6, ORANGE);
-  this->eye->drawPixel(3, 6, ORANGE);
-  this->eye->drawPixel(4, 6, ORANGE);
-  
-  this->eye->drawPixel(1, 7, ORANGE);
-  this->eye->drawPixel(2, 7, ORANGE);
-  this->eye->drawPixel(3, 7, ORANGE);
+  const char disp[HEIGHT][WIDTH] = {
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'*', 'O', 'O', 'O', '*'}
+  };
+
+  this->displayPattern(disp);
 
   this->eyeState = STATE_SLEEPY;
   this->eye->show();
@@ -510,21 +356,39 @@ void Eye::sleepyEye()
 void Eye::deadEye()
 {
   this->resetEye();
+    const char disp[HEIGHT][WIDTH] = {
+    {'*', '*', '*', '*', '*'},
+    {'O', '*', '*', '*', 'O'},
+    {'*', 'O', '*', 'O', '*'},
+    {'*', '*', 'O', '*', '*'},
+    {'*', 'O', '*', 'O', '*'},
+    {'O', '*', '*', '*', 'O'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'}
+  };
+
+  this->displayPattern(disp);
   
-  this->eye->drawPixel(0, 1, ORANGE);
-  this->eye->drawPixel(4, 1, ORANGE);
+  this->eyeState = STATE_DEAD;
+  this->eye->show();
+}
 
-  this->eye->drawPixel(1, 2, ORANGE);
-  this->eye->drawPixel(3, 2, ORANGE);
+void Eye::heartEye()
+{
+  this->resetEye();
+    const char disp[HEIGHT][WIDTH] = {
+    {'*', '*', '*', '*', '*'},
+    {'*', 'R', '*', 'R', '*'},
+    {'R', 'R', 'R', 'R', 'R'},
+    {'R', 'R', 'R', 'R', 'R'},
+    {'R', 'R', 'R', 'R', 'R'},
+    {'*', 'R', 'R', 'R', '*'},
+    {'*', '*', 'R', '*', '*'},
+    {'*', '*', '*', '*', '*'}
+  };
 
-  this->eye->drawPixel(2, 3, ORANGE);
+  this->displayPattern(disp);
   
-  this->eye->drawPixel(1, 4, ORANGE);
-  this->eye->drawPixel(3, 4, ORANGE);
-
-  this->eye->drawPixel(0, 5, ORANGE);
-  this->eye->drawPixel(4, 5, ORANGE);
-
   this->eyeState = STATE_DEAD;
   this->eye->show();
 }

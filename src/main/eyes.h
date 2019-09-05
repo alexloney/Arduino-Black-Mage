@@ -48,6 +48,9 @@ class Eye
     void veryAngryEye();
     void sleepyEye();
     void deadEye();
+    void heartEye();
+
+    void displayPattern(const char p[HEIGHT][WIDTH]);
     
   private:
     int eyeType;

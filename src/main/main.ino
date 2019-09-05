@@ -94,8 +94,8 @@ void loop() {
     }
     else if (currentKey == '3')
     {
-      leftEye->sadEye();
-      rightEye->sadEye();
+      leftEye->heartEye();
+      rightEye->heartEye();
     }
     else if (currentKey == '4')
     {
