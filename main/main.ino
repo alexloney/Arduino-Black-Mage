@@ -20,6 +20,15 @@
 #define LEFT_EYE_PIN 9
 #define RIGHT_EYE_PIN 10
 
+#define BUTTON_UP 5
+#define BUTTON_DOWN 6
+#define BUTTON_LEFT 7
+#define BUTTON_RIGHT 8
+#define BUTTON_1 1
+#define BUTTON_2 2
+#define BUTTON_3 3
+#define BUTTON_4 4
+
 unsigned long nextBlink = 0;
 int currentEyeState = STATE_NORMAL;
 
@@ -67,7 +76,6 @@ void setup() {
     }
   }
 
-
   /* Disable command echo from Bluefruit */
   ble.echo(false);
 
@@ -108,7 +116,7 @@ void setup() {
   nextBlink = millis() + random(1000 * 90, 1000 * 120);
 }
 
-bool buttons[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+bool buttons[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 void loop() {
   unsigned long currentTime = millis();
@@ -117,12 +125,26 @@ void loop() {
   if (packetbuffer[1] == 'B') {
     uint8_t buttnum = packetbuffer[2] - '0';
     bool pressed = packetbuffer[3] - '0';
+
+    if (buttnum == BUTTON_RIGHT || 
+        buttnum == BUTTON_LEFT ||
+        buttnum == BUTTON_DOWN ||
+        buttnum == BUTTON_UP)
+    {
+      buttons[BUTTON_UP] = 0;
+      buttons[BUTTON_RIGHT] = 0;
+      buttons[BUTTON_DOWN] = 0;
+      buttons[BUTTON_LEFT] = 0;
+    }
+    
     if (pressed) {
       buttons[buttnum] = 1;
     }
     else {
       buttons[buttnum] = 0;
     }
+
+    Serial.println(buttnum);
   }
   
   if (currentTime > nextBlink)
@@ -138,11 +160,98 @@ void loop() {
     
     nextBlink = millis() + random(1000 * 90, 1000 * 120);
   }
-
-  if (buttons[1])
+  
+  if (buttons[BUTTON_UP])
   {
-    leftEye->happyEye();
-    rightEye->happyEye();
+    if (buttons[BUTTON_1])
+    {
+      leftEye->skepticalEye();
+      rightEye->normalEye();
+    }
+    else if (buttons[BUTTON_2])
+    {
+      leftEye->suspiciousEye();
+      rightEye->suspiciousEye();
+    }
+    else if (buttons[BUTTON_3])
+    {
+      leftEye->angryEye();
+      rightEye->angryEye();
+    }
+    else if (buttons[BUTTON_4])
+    {
+      leftEye->veryAngryEye();
+      rightEye->veryAngryEye();
+    }
+  }
+  else if (buttons[BUTTON_RIGHT])
+  {
+    if (buttons[BUTTON_1])
+    {
+      leftEye->sadEye();
+      rightEye->sadEye();
+    }
+    else if (buttons[BUTTON_2])
+    {
+      leftEye->verySadEye();
+      rightEye->verySadEye();
+    }
+    else if (buttons[BUTTON_3])
+    {
+      leftEye->reallyEye();
+      rightEye->reallyEye();
+    }
+    else if (buttons[BUTTON_4])
+    {
+      leftEye->closedEye();
+      rightEye->closedEye();
+    }
+  }
+  else if (buttons[BUTTON_LEFT])
+  {
+    if (buttons[BUTTON_1])
+    {
+      leftEye->happyEye();
+      rightEye->happyEye();
+    }
+    else if (buttons[BUTTON_2])
+    {
+      leftEye->fullHappyEye();
+      rightEye->fullHappyEye();
+    }
+    else if (buttons[BUTTON_3])
+    {
+      leftEye->happyEye();
+      rightEye->normalEye();
+    }
+    else if (buttons[BUTTON_4])
+    {
+      leftEye->heartEye();
+      rightEye->heartEye();
+    }
+  }
+  else if (buttons[BUTTON_DOWN])
+  {
+    if (buttons[BUTTON_1])
+    {
+      leftEye->surpriseEye();
+      rightEye->surpriseEye();
+    }
+    else if (buttons[BUTTON_2])
+    {
+      leftEye->laughingEye();
+      rightEye->laughingEye();
+    }
+    else if (buttons[BUTTON_3])
+    {
+      leftEye->deadEye();
+      rightEye->deadEye();
+    }
+    else if (buttons[BUTTON_4])
+    {
+      leftEye->noEye();
+      rightEye->noEye();
+    }
   }
   else
   {

@@ -107,6 +107,45 @@ void Eye::sadEye()
       {'O', 'O', 'O', 'O', '*'},
       {'O', 'O', 'O', 'O', 'O'},
       {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'*', 'O', 'O', 'O', '*'},
+    };
+    
+    this->displayPattern(disp);
+  }
+  else if (this->eyeType == RIGHT_EYE)
+  {
+    const char disp[HEIGHT][WIDTH] = {
+      {'*', '*', '*', '*', 'O'},
+      {'*', '*', '*', 'O', 'O'},
+      {'*', '*', 'O', 'O', 'O'},
+      {'*', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'*', 'O', 'O', 'O', '*'}
+    };
+    
+    this->displayPattern(disp);
+  }
+
+  this->eyeState = STATE_SAD;
+  this->eye->show();
+}
+
+void Eye::verySadEye()
+{
+  this->resetEye();
+  
+  if (this->eyeType == LEFT_EYE)
+  {
+    const char disp[HEIGHT][WIDTH] = {
+      {'O', '*', '*', '*', '*'},
+      {'O', 'O', '*', '*', '*'},
+      {'O', 'O', 'O', '*', '*'},
+      {'O', 'O', 'O', 'O', '*'},
+      {'O', 'O', 'O', 'O', 'O'},
+      {'O', 'O', 'O', 'O', 'O'},
       {'B', 'B', 'B', 'B', 'B'},
       {'*', 'B', 'B', 'B', '*'}
     };
@@ -154,7 +193,7 @@ void Eye::closedEye()
   this->eye->show();
 }
 
-void Eye::halfEye()
+void Eye::fullHappyEye()
 {
   this->resetEye();
   
@@ -171,46 +210,7 @@ void Eye::halfEye()
   
   this->displayPattern(disp);
 
-  this->eyeState = STATE_HALF;
-  this->eye->show();
-}
-
-void Eye::halfEye2()
-{
-  this->resetEye();
-
-  if (eye == LEFT_EYE)
-  {
-    const char disp[HEIGHT][WIDTH] = {
-      {'O', 'O', 'O', 'O', '*'},
-      {'O', 'O', 'O', 'O', 'O'},
-      {'O', 'O', 'O', 'O', 'O'},
-      {'*', '*', '*', '*', '*'},
-      {'*', '*', '*', '*', '*'},
-      {'*', '*', '*', '*', '*'},
-      {'*', '*', '*', '*', '*'},
-      {'*', '*', '*', '*', '*'}
-    };
-  
-    this->displayPattern(disp);
-  }
-  else if (eye == RIGHT_EYE)
-  {
-    const char disp[HEIGHT][WIDTH] = {
-      {'*', 'O', 'O', 'O', 'O'},
-      {'O', 'O', 'O', 'O', 'O'},
-      {'O', 'O', 'O', 'O', 'O'},
-      {'*', '*', '*', '*', '*'},
-      {'*', '*', '*', '*', '*'},
-      {'*', '*', '*', '*', '*'},
-      {'*', '*', '*', '*', '*'},
-      {'*', '*', '*', '*', '*'}
-    };
-  
-    this->displayPattern(disp);
-  }
-
-  this->eyeState = STATE_HALF2;
+  this->eyeState = STATE_FULL_HAPPY;
   this->eye->show();
 }
 
@@ -390,5 +390,92 @@ void Eye::heartEye()
   this->displayPattern(disp);
   
   this->eyeState = STATE_DEAD;
+  this->eye->show();
+}
+
+void Eye::skepticalEye()
+{
+  this->resetEye();
+  const char disp[HEIGHT][WIDTH] = {
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'*', 'O', 'O', 'O', '*'}
+  };
+
+  this->displayPattern(disp);
+  
+  this->eyeState = STATE_SKEPTICAL;
+  this->eye->show();
+}
+
+void Eye::suspiciousEye()
+{
+  this->resetEye();
+  const char disp[HEIGHT][WIDTH] = {
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'}
+  };
+
+  this->displayPattern(disp);
+  
+  this->eyeState = STATE_SUSPICIOUS;
+  this->eye->show();
+}
+
+void Eye::reallyEye()
+{
+  this->resetEye();
+  const char disp[HEIGHT][WIDTH] = {
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'*', '*', '*', '*', '*'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'O', 'O', 'O', 'O', 'O'},
+    {'*', 'O', 'O', 'O', '*'}
+  };
+
+  this->displayPattern(disp);
+  
+  this->eyeState = STATE_REALLY;
+  this->eye->show();
+}
+
+void Eye::surpriseEye()
+{
+  this->resetEye();
+  const char disp[HEIGHT][WIDTH] = {
+    {'*', 'O', 'O', 'O', '*'},
+    {'O', 'O', '*', 'O', 'O'},
+    {'O', '*', '*', '*', 'O'},
+    {'O', '*', '*', '*', 'O'},
+    {'O', '*', '*', '*', 'O'},
+    {'O', '*', '*', '*', 'O'},
+    {'O', 'O', '*', 'O', 'O'},
+    {'*', 'O', 'O', 'O', '*'}
+  };
+
+  this->displayPattern(disp);
+  
+  this->eyeState = STATE_SURPRISE;
+  this->eye->show();
+}
+
+void Eye::noEye()
+{
+  this->resetEye();
+  this->eyeState = STATE_NO_EYE;
   this->eye->show();
 }

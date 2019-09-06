@@ -27,6 +27,12 @@
 #define STATE_HALF 8
 #define STATE_HALF2 9
 #define STATE_CLOSED 10
+#define STATE_FULL_HAPPY 11
+#define STATE_SKEPTICAL 12
+#define STATE_SUSPICIOUS 13
+#define STATE_REALLY 14
+#define STATE_SURPRISE 15
+#define STATE_NO_EYE 16
 
 class Eye
 {
@@ -40,15 +46,20 @@ class Eye
     void normalEye();
     void happyEye();
     void sadEye();
+    void verySadEye();
     void closedEye();
-    void halfEye();
-    void halfEye2();
     void laughingEye();
     void angryEye();
     void veryAngryEye();
     void sleepyEye();
     void deadEye();
     void heartEye();
+    void skepticalEye();
+    void suspiciousEye();
+    void reallyEye();
+    void fullHappyEye();
+    void surpriseEye();
+    void noEye();
 
     void displayPattern(const char p[HEIGHT][WIDTH]);
     
